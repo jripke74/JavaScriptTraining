@@ -1,34 +1,62 @@
 body {
-  background: #2f558e url(../img/bg.png) repeat 0 0;
-  background-size: 400px auto;
-  font-family: sans-serif;
+	font-family: sans-serif;
+	background: #384047;
 }
-img {
-  display: block;
-  width: 150px;
-  margin: 100px auto;
+h1 {
+	color: #fff;
+	text-align: center
 }
-button {
-  background: #dae1e4;
-  border: none;
-  border-radius: 5px;
-  color: #1d3c6a;
-  font-size: 24px;
-  width: 480px;
-  padding: 40px 0;
-  margin: -40px -20px;
-  outline: none;
-  cursor: pointer;
+
+ul {
+	list-style:none;
+	margin: 0 auto;
+	padding: 0;
+	display: block;
+	max-width: 780px;
+	text-align: center;
 }
-.spoiler {
-	background: #1d3c6a;
-  width: 440px;
-  margin: 0 auto 20px;
-  border-radius: 5px;
-  padding: 40px 20px;
-  text-align: center;
-  font-size: 24px
+ul li {
+	display: inline-block;
+	padding: 8px;
+	background:white;
+	margin:10px;
 }
-.spoiler span {
-  color: #dae1e4;
+ul li img {
+	display: block;
 }
+a {
+	text-decoration: none;
+}
+/** Start Coding Here **/
+#overlay {
+  background:rgba(0,0,0,0.7);
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+  text-align:center;
+}
+
+#overlay img {
+ margin-top: 10%; 
+}
+
+#overlay p {
+ color:white; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
