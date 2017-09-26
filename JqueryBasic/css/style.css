@@ -51,6 +51,7 @@ h1 {
 	text-align: center;
 	color: #384047;
 }
+
 p {
 	text-align: center;
 	color: #777;
@@ -62,7 +63,7 @@ Modify CSS to hide links on small width and show button and select
 Also hides select and button on larger width and show's links
 **/
 
-/*@media (min-width: 320px) and (max-width: 568px) {
+@media (min-width: 320px) and (max-width: 568px) {
   #menu ul {
     display:none;
   }
@@ -72,4 +73,4 @@ Also hides select and button on larger width and show's links
   #menu select, #menu button {
     display:none;
   }
-}*/
+}
