@@ -1,51 +1,45 @@
-// Problem: Hints are shown even when form is valid
-// Solution: Hide and show them at appropriate times
-let $password = $("#password");
-let $confirmPassword = $("#confirm_password")
-// Hide Hints
-$("form span").hide();
+// Problem: No user interaction causes no change to application
+// Solution: When user interacts cause changes appropriately
+let color = $(".selected").css("background-color");
 
-function isPasswordValid() {
-  return $password.val().length > 8;
+// When clicking on control list items
+$(".controls").on("click", "li", function() {
+  // Deselect sibling elements
+  $(this).siblings().removeClass("selected");
+  // Select clicked element
+  $(this).addClass("selected");
+  // cache current color
+  color = $(this).css("background-color");
+});
+
+// When "new color" is pressed
+$("#revealColorSelect").click(function() {
+  // Show color select or hide the color select
+  changeColor();
+  $("#colorSelect").toggle();
+});
+
+// update the new color span
+function changeColor() {
+  let red = $("#red").val();
+  let green = $("#green").val();
+  let blue = $("#blue").val();
+  $("#newColor").css("background-color", "rgb(" + red + "," + green + "," + blue + ")");
 }
 
-function arePasswordsMatching() {
-  return $password.val() === $confirmPassword.val();
-}
+// When color sliders change
+$("input[type=range]").change(changeColor);
 
-function canSubmit() {
-  return isPasswordValid() && arePasswordsMatching();
-}
+// When "add color" is pressed
+$("#addNewColor").click(function() {
+  // Append the color to the controls ul
+  let $newColor = $("<li></li>");
+  $newColor.css("background-color", $("#newColor").css("background-color"));
+  $(".controls ul").append($newColor);
+  // Select the new color
+  $newColor.click();
+});
 
-function passwordEvent() {
-  // Find out if password is valid
-  if (isPasswordValid()) {
-    // Hide hint if valid
-    $password.next().hide();
-  } else {
-    // else show hint
-    $password.next().show();
-  }
-}
 
-function confirmPasswordEvent() {
-  // Find out if password and confirmation match
-  if (arePasswordsMatching()) {
-    // Hide hint if match
-    $confirmPassword.next().hide();
-  } else {
-    // else show hint
-    $confirmPassword.next().show();
-  }
-}
-
-function enableSubmitEvent() {
-  $("#submit").prop("disable", !canSubmit());
-}
-// When event happens on password input
-$password.focus(passwordEvent).keyup(passwordEvent).keyup(confirmPasswordEvent).keyup(enableSubmitEvent);
-
-// When event happens on confirmation input
-$confirmPassword.focus(confirmPasswordEvent).keyup(confirmPasswordEvent).keyup(enableSubmitEvent);
-
-enableSubmitEvent();
+// On mouse events on the canvas
+  // Draw lines
