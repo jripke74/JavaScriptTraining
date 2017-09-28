@@ -1,6 +1,10 @@
 // Problem: No user interaction causes no change to application
 // Solution: When user interacts cause changes appropriately
 let color = $(".selected").css("background-color");
+let $canvas = $("canvas");
+let context = $canvas[0].getContext("2d");
+let lastEvent;
+let mouseDown = false;
 
 // When clicking on control list items
 $(".controls").on("click", "li", function() {
@@ -42,4 +46,19 @@ $("#addNewColor").click(function() {
 
 
 // On mouse events on the canvas
+$canvas.mousedown(function(event) {
+  lastEvent = event;
+  mouseDown = true;
+}).mousemove(function(event) {
   // Draw lines
+  if (mouseDown) {
+    context.beginPath();
+    context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
+    context.lineTo(event.offsetX, event.offsetY);
+    context.strokeStyle = color;
+    context.stroke();
+    lastEvent = event;
+  }
+}).mouseup(function() {
+  mouseDown = false;
+});
